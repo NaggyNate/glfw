@@ -20,7 +20,7 @@ project "GLFW"
 
 	filter "system:windows"
 		systemversion "latest"
-		staticruntime "On"
+		staticruntime "on"
 
 		files
 		{
@@ -42,13 +42,33 @@ project "GLFW"
 		}
 
     filter "system:macosx"
+		pic "on"
         systemversion "11.3"
-		staticruntime "On"
+		staticruntime "on"
+
+		files
+		{
+			"src/cocoa_init.m",
+			"src/cocoa_joystick.m",
+			"src/cocoa_monitor.m",
+			"src/cocoa_time.c",
+			"src/posix_thread.c",
+			"src/cocoa_window.m",
+			"src/nsgl_context.m",
+			"src/egl_context.c",
+			"src/osmesa_context.c"
+		}
+
+		links
+		{
+			"Cocoa.framework",
+			"IOKit.framework",
+			"CoreFoundation.framework"
+		}
 
 		defines 
 		{ 
-			"_GLFW_COCOA",
-			"_CRT_SECURE_NO_WARNINGS"
+			"_GLFW_COCOA"
 		}
 
 	filter "configurations:Debug"
