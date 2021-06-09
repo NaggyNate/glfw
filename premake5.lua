@@ -1,10 +1,10 @@
 project "GLFW"
 	kind "StaticLib"
 	language "C"
-	staticruntime "off"
+	staticruntime "on"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
@@ -41,9 +41,9 @@ project "GLFW"
 			"_CRT_SECURE_NO_WARNINGS"
 		}
 
-    	filter "system:macosx"
+    filter "system:macosx"
 		pic "on"
-        	systemversion "11.3"
+		systemversion "11.3"
 
 		files
 		{
@@ -61,6 +61,7 @@ project "GLFW"
 		links
 		{
 			"Cocoa.framework",
+			"OpenGL.framework",
 			"IOKit.framework",
 			"CoreFoundation.framework"
 		}
